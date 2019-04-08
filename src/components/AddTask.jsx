@@ -8,7 +8,7 @@ class AddTask extends Component {
 
     handleChange = (e) => {
         this.setState({
-            [e.target.id]: e.target.value
+            title: e.target.value
         });
 
         if(e.target.value !== ''){
@@ -26,6 +26,9 @@ class AddTask extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addTask(this.state);
+        this.setState({
+            title: ''
+        })
     }
 
   
