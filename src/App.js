@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import TaskList from './components/TaskList';
 import AddTask from './components/AddTask';
 import NavBar from './components/NavBar';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
 import 'bootstrap/dist/css/bootstrap.css';
 import './css/style.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
   state = {
@@ -46,13 +50,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="mt-4">
-        <div className="text-center">
-          <h2 className="m-5">Todo's</h2>
+      <BrowserRouter>
+        <div className="">
+          <NavBar/>
+          
+          <Route exact path = '/' component={Home}/>
+          <Route path = '/about' component={About}/>
+          <Route path = '/contact' component={Contact}/>
+
+          <div className="text-center mt-4">
+            <h2 className="m-5">Todo's</h2>
+          </div>
+          <TaskList tasks={this.state.tasks} handleDelete={this.handleDelete} handleEdit={this.handleEdit}/>
+          <AddTask addTask={this.addTask}/>
         </div>
-        <TaskList tasks={this.state.tasks} handleDelete={this.handleDelete} handleEdit={this.handleEdit}/>
-        <AddTask addTask={this.addTask}/>
-      </div>
+      </BrowserRouter>
     );
   }
 }
